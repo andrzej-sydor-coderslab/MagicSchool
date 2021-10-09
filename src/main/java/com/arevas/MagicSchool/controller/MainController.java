@@ -77,32 +77,42 @@ public class MainController {
     }
 
     @GetMapping("/app/userPanel/merge")
-    public String merge(@RequestParam int idToEdit, Model model) {
-        model.addAttribute("user", userDao.findById(idToEdit));
+    public String merge(@RequestParam int idToMerge, Model model) {
+        model.addAttribute("user", userDao.findById(idToMerge));
         return "views/userEdit";
     }
 
     @PostMapping("/app/userPanel/merge")
-    public String userMerge(@Valid User user, BindingResult result) {
+    public String userMerge(@Valid User user, BindingResult result, HttpServletRequest request ) {
+        String email = user.getEmail();
+        String password = user.getPassword();
+        User logUser= userDao.login(email, password);
+        HttpSession session = request.getSession();
         if (result.hasErrors()) {
+            System.out.println("Coś poszło nie tak");
             return "views/userEdit";
         }
+        session.setAttribute("logUser", logUser);
+        user.setPassword(UserDao.hashPassword(password));
         userDao.merge(user);
-        return "redirect:/views/userPanel";
+        return "redirect:/app/userPanel";
     }
 
     @GetMapping("/app/userPanel/remove")
     public String userRemove(@RequestParam int idToRemove, Model model){
         model.addAttribute("user", userDao.findById(idToRemove));
         return "/views/userRemove";
-
     }
+
     @PostMapping("/app/userPanel/remove")
-    public String remove(@RequestParam String confirmed, @RequestParam int idToRemove) {
+    public String remove(@RequestParam String confirmed, @RequestParam int idToRemove, HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
         if ("yes".equals(confirmed)){
             User user = userDao.findById(idToRemove);
             userDao.remove(user);
+            session.removeAttribute("logUser");
+            return "redirect:/index";
         }
-        return "/index";
+        return "redirect:/app/userPanel";
     }
 }

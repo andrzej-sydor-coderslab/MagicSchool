@@ -4,10 +4,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ConversionServiceFactoryBean;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.core.convert.ConversionService;
-import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
@@ -37,6 +34,7 @@ public class AppConfig {
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
     }
+
     @Bean
     public Validator validator() {
         LocalValidatorFactoryBean lvfb = new LocalValidatorFactoryBean();

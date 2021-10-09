@@ -13,7 +13,7 @@
 <body class="home">
 <!-- navbar-->
 <header class="header">
-    <%@include file="/WEB-INF/fragments/headerNoLog.jsp" %>
+    <%@include file="/WEB-INF/fragments/headerLog.jsp" %>
 </header>
 <div id="carousel-home" data-ride="carousel" class="carousel slide carousel-fullscreen carousel-fade">
     <div role="listbox" class="carousel-inner">
@@ -26,20 +26,20 @@
         </div>
     </div>
 </div>
-<div class="modal-dialog modal-sm">
+<center>
     <div class="modal-content">
         <div class="modal-header">
             <h4 id="Login" class="modal-title">Panel user -  <a class="nav-link color-header">${user.getLogin()}</a></h4>
         </div>
             <form:form method="get" modelAttribute="user">
-                <table class="table">
-                        <thead class="thead-dark">
+                <table class="Table">
+                        <thead>
                         <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Login</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Wizard</th>
-                            <th scope="col">Option</th>
+                            <th>Id</th>
+                            <th>Login</th>
+                            <th>Email</th>
+                            <th>Wizard</th>
+                            <th>Option</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -56,16 +56,22 @@
                             <td class="nav-tabs">
                                 <a href="/app/userPanel/remove?idToRemove=${user.id}">
                                     <i>Remove user</i></a><br/>
-                                <a href="/app/userPanel/merge?idTomerge=${user.id}">
+                                <a href="/app/userPanel/merge?idToMerge=${user.id}">
                                     <i>Edit user</i></a>
                                 </a>
                             </td>
                         </tr>
                         </tbody>
                      </table>
+            <br/>
+            <br/>
             </form:form>
     </div>
 </div>
+</center>
+<br/>
+<br/>
+<br/>
 <footer class="footer">
     <%@include file="/WEB-INF/fragments/footer.jsp" %>
 </footer>

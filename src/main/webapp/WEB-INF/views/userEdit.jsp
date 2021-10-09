@@ -12,11 +12,11 @@
 <body class="home">
 <!-- navbar-->
 <header class="header">
-    <%@include file="/WEB-INF/fragments/headerNoLog.jsp" %>
+    <%@include file="/WEB-INF/fragments/headerLog.jsp" %>
 </header>
 <div id="carousel-home" data-ride="carousel" class="carousel slide carousel-fullscreen carousel-fade">
     <div role="listbox" class="carousel-inner">
-        <div class="item active" style="background-image: url('../img/portal2Login.jpg');">
+        <div class="item active" style="background-image: url('../../img/userPanel.jpg');">
             <div class="overlay"></div>
             <div class="carousel-caption">
                 <h1 class="super-heading">Magic School</h1>
@@ -28,11 +28,18 @@
 <div class="modal-dialog modal-sm">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 class="modal-title">Player edit form</h4>
+            <h4 class="modal-title text-center">Player edit form</h4>
         </div>
         <div class="modal-body">
             <form:form method="post" modelAttribute="user">
                     <form:hidden path="id"/>
+                <div class="form-group">
+                    <p class="text-center">
+                        Login:<br/>
+                        <form:input path="login" type="test" placeholder="Your new login"/><br/>
+                        <form:errors path="login"/>
+                    </p>
+                </div>
                 <div class="form-group">
                     <p class="text-center">
                         Email:<br/>
@@ -54,6 +61,9 @@
         </div>
     </div>
 </div>
+<br/>
+<br/>
+<br/>
 <footer class="footer">
     <%@include file="/WEB-INF/fragments/footer.jsp" %>
 </footer>

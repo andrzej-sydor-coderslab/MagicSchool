@@ -2,16 +2,13 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <%@include file="/WEB-INF/fragments/head.jsp" %>
 </head>
 
 <body class="home">
-<!-- navbar-->
 <header class="header">
     <%@include file="/WEB-INF/fragments/headerNoLog.jsp" %>
 </header>
