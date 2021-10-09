@@ -2,23 +2,22 @@ package com.arevas.MagicSchool.controller;
 
 import com.arevas.MagicSchool.dao.UserDao;
 import com.arevas.MagicSchool.entity.User;
-import com.arevas.MagicSchool.repository.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 @Controller
 public class MainController {
 
     private final UserDao userDao;
-    private final UserRepository userRepository;
 
-    public MainController(UserDao userDao, UserRepository userRepository) {
+    public MainController(UserDao userDao) {
         this.userDao = userDao;
-        this.userRepository = userRepository;
     }
 
     @GetMapping("/index")
@@ -36,15 +35,12 @@ public class MainController {
     public String login(User user, HttpServletRequest request){
         String email = user.getEmail();
         String password = user.getPassword();
-        Long id = user.getId();
-        String login = user.getLogin();
         User logUser= userDao.login(email, password);
         HttpSession session = request.getSession();
         if(logUser == null){
             return "views/login";
         } else {
-            userDao.login(email, password);
-            session.setAttribute("logUser", user);
+            session.setAttribute("logUser", logUser);
             return "redirect:/app/userPanel";
         }
     }
@@ -55,7 +51,10 @@ public class MainController {
         return "views/register";
     }
     @PostMapping("/register")
-    public String register(User user){
+    public String register(User user, BindingResult result){
+        if (result.hasErrors()) {
+            return "views/register";
+        }
         String password = user.getPassword();
         user.setPassword(UserDao.hashPassword(password));
         userDao.persist(user);
@@ -78,26 +77,32 @@ public class MainController {
     }
 
     @GetMapping("/app/userPanel/merge")
-    public String merge(@RequestParam long id, Model model) {
-        model.addAttribute("user", userDao.findById(id));
+    public String merge(@RequestParam int idToEdit, Model model) {
+        model.addAttribute("user", userDao.findById(idToEdit));
         return "views/userEdit";
     }
 
     @PostMapping("/app/userPanel/merge")
-    public String userMerge(User user){
+    public String userMerge(@Valid User user, BindingResult result) {
+        if (result.hasErrors()) {
+            return "views/userEdit";
+        }
         userDao.merge(user);
         return "redirect:/views/userPanel";
     }
 
     @GetMapping("/app/userPanel/remove")
-    public String userRemove(@RequestParam long id, Model model){
-        model.addAttribute("user", userDao.findById(id));
+    public String userRemove(@RequestParam int idToRemove, Model model){
+        model.addAttribute("user", userDao.findById(idToRemove));
         return "/views/userRemove";
 
     }
     @PostMapping("/app/userPanel/remove")
-    public String remove(User user) {
-        userDao.remove(user);
-        return "/logout";
+    public String remove(@RequestParam String confirmed, @RequestParam int idToRemove) {
+        if ("yes".equals(confirmed)){
+            User user = userDao.findById(idToRemove);
+            userDao.remove(user);
+        }
+        return "/index";
     }
 }

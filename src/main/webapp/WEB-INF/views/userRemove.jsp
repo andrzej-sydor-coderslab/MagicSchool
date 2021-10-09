@@ -29,15 +29,14 @@
 <div class="modal-dialog modal-sm">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 id="Login" class="modal-title">Player remove</h4>
+            <h4 class="modal-title">Player remove</h4>
         </div>
         <div class="modal-body">
-            <form:form method="post" modelAttribute="user">
-                <div class="form-group">
+            <form:form method="post">
                     <form:hidden path="id"/>
-                </div>
+                <h3>Are you sure you want to delete the user - ${user.login}?</h3>
                 <form method="post">
-                    <input type="hidden" name="id" value="${user.id}">
+                    <input type="hidden" name="idToRemove" value="${user.id}">
                     <button type="submit" value="yes" name="confirmed">YES</button>
                     <button type="submit" value="no" name="confirmed">NO</button>
                 </form>

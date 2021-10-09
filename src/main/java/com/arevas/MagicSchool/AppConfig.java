@@ -43,18 +43,4 @@ public class AppConfig {
         lvfb.setValidationMessageSource(messageSource());
         return lvfb;
     }
-
-//    public Set<Converter> getConverters() {
-//        Set<Converter> converters = new HashSet<>();
-//        converters.add(new CandidateConverter());
-//        return converters;
-//    }
-
-//    @Bean(name = "conversionService")
-//    public ConversionService getConversionService() {
-//        ConversionServiceFactoryBean factory = new ConversionServiceFactoryBean();
-//        factory.setConverters(getConverters());
-//        factory.afterPropertiesSet();
-//        return factory.getObject();
-//    }
 }

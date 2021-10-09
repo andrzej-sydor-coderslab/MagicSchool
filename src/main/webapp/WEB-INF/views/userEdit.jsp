@@ -2,7 +2,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,18 +28,24 @@
 <div class="modal-dialog modal-sm">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 id="Login" class="modal-title">Player edit form</h4>
+            <h4 class="modal-title">Player edit form</h4>
         </div>
         <div class="modal-body">
             <form:form method="post" modelAttribute="user">
-                <div class="form-group">
                     <form:hidden path="id"/>
-                </div>
                 <div class="form-group">
                     <p class="text-center">
                         Email:<br/>
-                        <form:input path="email" type="email" placeholder="Your new email"/>
+                        <form:input path="email" type="email" placeholder="Your new email"/><br/>
+                        <form:errors path="email"/>
                     </p>
+                </div>
+                <div class="form-group">
+                <p class="text-center">
+                    Password:<br/>
+                    <form:input path="password" type="password" placeholder="Your new password"/><br/>
+                    <form:errors path="password"/>
+                </p>
                 </div>
                 <p class="text-center">
                     <button type="submit">Edit</button>
