@@ -25,6 +25,16 @@ public class MainController {
         return "/index";
     }
 
+    @GetMapping("/aboutGame")
+    public String aboutGame() {
+        return "/aboutGame";
+    }
+
+    @GetMapping("/contact")
+    public String contact() {
+        return "/contact";
+    }
+
     @GetMapping("/login")
     public String userLogin(Model model){
         model.addAttribute("user", new User());
@@ -105,7 +115,7 @@ public class MainController {
     }
 
     @PostMapping("/app/userPanel/remove")
-    public String remove(@RequestParam String confirmed, @RequestParam int idToRemove, HttpServletRequest request, Model model) {
+    public String remove(@RequestParam String confirmed, @RequestParam int idToRemove, HttpServletRequest request) {
         HttpSession session = request.getSession();
         if ("yes".equals(confirmed)){
             User user = userDao.findById(idToRemove);
@@ -115,4 +125,5 @@ public class MainController {
         }
         return "redirect:/app/userPanel";
     }
+
 }

@@ -8,14 +8,14 @@
         <div id="navigation" class="collapse navbar-collapse navbar-right">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/index">Home</a></li>
-                <li><a href="/game">Game</a></li>
+                <li><a href="/app/game">Game</a></li>
                 <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Rankings<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Wizard ranking</a></li>
                         <li><a href="#">University ranking</a></li>
                     </ul>
                 </li>
-                <li><a href="/userPanel">User Panel</a></li>
+                <li><a href="/app/userPanel">User Panel</a></li>
                 <li class="active">
                     <c:choose>
                         <c:when test="${user.getLogin()==null}"><a class="nav-link color-header" href="/login">Sign in</a></c:when>
