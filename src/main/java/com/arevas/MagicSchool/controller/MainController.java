@@ -61,13 +61,17 @@ public class MainController {
         return "views/register";
     }
     @PostMapping("/register")
-    public String register(User user, BindingResult result){
+    public String register(User user, BindingResult result, HttpServletRequest request ){
         if (result.hasErrors()) {
             return "views/register";
         }
+        String email = user.getEmail();
         String password = user.getPassword();
         user.setPassword(UserDao.hashPassword(password));
         userDao.persist(user);
+        User logUser= userDao.login(email, password);
+        HttpSession session = request.getSession();
+        session.setAttribute("logUser", logUser);
         return "views/userPanel";
     }
 
@@ -99,7 +103,6 @@ public class MainController {
         User logUser= userDao.login(email, password);
         HttpSession session = request.getSession();
         if (result.hasErrors()) {
-            System.out.println("Coś poszło nie tak");
             return "views/userEdit";
         }
         session.setAttribute("logUser", logUser);

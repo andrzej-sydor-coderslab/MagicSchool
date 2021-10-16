@@ -11,7 +11,6 @@ import javax.validation.constraints.Size;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Table(name = "spells")
 public class Spell {
 
@@ -21,11 +20,11 @@ public class Spell {
 
     @NotBlank
     @Column(nullable = false, unique = true)
-    @Size(min = 2, max = 15)
+    @Size(min = 2, max = 20)
     private String name;
 
     @NotBlank
-    @Size(max = 500)
+    @Size(max = 1000)
     private String description;
 
     @NotBlank

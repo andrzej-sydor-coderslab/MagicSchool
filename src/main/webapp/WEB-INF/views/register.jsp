@@ -2,7 +2,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,34 +32,34 @@
         </div>
         <div class="modal-body">
             <form:form method="post" modelAttribute="user">
-            <div class="form-group">
-                <form:hidden path="id"/>
-            <p class="text-center">
-                 Login:<br/>
-                 <form:input path="login" type="text" placeholder="Your login"/>
-                </p>
-            </div>
-            <div class="form-group">
+                <div class="form-group">
+                    <form:hidden path="id"/>
+                    <p class="text-center">
+                        Login:<br/>
+                        <form:input path="login" type="text" placeholder="Your login"/>
+                    </p>
+                </div>
+                <div class="form-group">
+                    <p class="text-center">
+                        Email:<br/>
+                        <form:input path="email" type="email" placeholder="Your email"/>
+                    </p>
+                </div>
+                <div class="form-group">
+                    <p class="text-center">
+                        Password:<br/>
+                        <form:input path="password" type="password" placeholder="Your password"/>
+                    </p>
+                </div>
                 <p class="text-center">
-                 Email:<br/>
-                 <form:input path="email" type="email" placeholder="Your email"/>
-                 </p>
-            </div>
-            <div class="form-group">
-                <p class="text-center">
-                    Password:<br/>
-                    <form:input path="password" type="password" placeholder="Your password"/>
+                    <button type="submit">Register</button>
                 </p>
-            </div>
-            <p class="text-center">
-                <button type="submit">Register</button>
-            </p>
             </form:form>
         </div>
     </div>
 </div>
 <footer class="footer">
-<%@include file="/WEB-INF/fragments/footer.jsp" %>
+    <%@include file="/WEB-INF/fragments/footer.jsp" %>
 </footer>
 <!-- Scripts -->
 <%@include file="/WEB-INF/fragments/script.jsp" %>

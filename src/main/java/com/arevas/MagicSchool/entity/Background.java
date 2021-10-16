@@ -1,9 +1,16 @@
 package com.arevas.MagicSchool.entity;
 
+import lombok.*;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 @Entity
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @Table(name = "backgrounds")
 public class Background {
 
@@ -13,6 +20,6 @@ public class Background {
 
     private String name;
 
-    @Size(max = 500)
+    @Size(max = 1000)
     private String description;
 }

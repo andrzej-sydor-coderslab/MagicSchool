@@ -50,7 +50,7 @@
                             <td><c:choose>
                                 <c:when test="${user.getWizard()==null}"><a class="nav-link color-header" href="/app/addWizard">Create Wizard</a></c:when>
                                 <c:otherwise>
-                                    <a class="nav-link color-header" href="/app/showWizard">${user.getWizard()}</a>
+                                    <a class="nav-link color-header" href="/app/wizardPanel">${user.showWizardName()}</a>
                                 </c:otherwise>
                             </c:choose></td>
                             <td class="nav-tabs">

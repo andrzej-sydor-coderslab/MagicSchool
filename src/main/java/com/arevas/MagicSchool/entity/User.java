@@ -1,8 +1,6 @@
 package com.arevas.MagicSchool.entity;
 
 import lombok.*;
-import org.hibernate.annotations.Filter;
-import org.mindrot.jbcrypt.BCrypt;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -39,7 +37,8 @@ public class User {
 
     private boolean goodMode;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "wizard_id", unique = true)
     private Wizard wizard;
 
     @Column(name = "created_on")
@@ -58,4 +57,8 @@ public class User {
         updatedOn = LocalDateTime.now();
     }
 
+    public String showWizardName() {
+        String nameWizard = this.wizard.getName();
+        return nameWizard;
+    }
 }

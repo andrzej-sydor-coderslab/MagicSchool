@@ -3,6 +3,7 @@ package com.arevas.MagicSchool.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -26,53 +27,38 @@ public class Wizard {
     @Size(min = 2, max = 10)
     private String name;
 
-    @NotBlank
     @ManyToOne
     private Race race;
 
     @NotBlank
     private String gender;
 
-    @NotBlank
+    @Min(1)
     private int age;
 
-    @NotBlank
     private int lifePoints = 10;
 
-    @NotBlank
     private int attackPoints = 10;
 
-    @NotBlank
     private int defencePoints = 10;
 
-    @NotBlank
     @ManyToOne
     private Background background;
 
     @NotBlank
-    @Size(max = 500)
+    @Size(max = 1000)
     private String history;
 
-    @NotBlank
     private int level = 1;
 
-    @NotBlank
     private int experience = 0;
 
-    @NotBlank
     @ManyToOne
     private University university;
 
-    @NotBlank
-    @OneToMany
+    @ManyToMany
     private List<Spell> spellBook = new ArrayList<>();
 
-    @NotBlank
-    private int numberOfSpells;
-
-    @NotBlank
-    @OneToOne
-    @JoinColumn(name = "user_id", unique = true)
-    private User user;
+    private int numberOfSpells = 3;
 
 }

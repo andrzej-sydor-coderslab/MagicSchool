@@ -13,7 +13,6 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Table(name = "universities")
 public class University {
 
@@ -26,15 +25,15 @@ public class University {
     private String name;
 
     @NotBlank
-    @Size(max = 500)
+    @Size(max = 1000)
     private String description;
 
     @NotBlank
-    @OneToMany
+    @ManyToMany
     private List<Wizard> wizards = new ArrayList<>();
 
     @NotBlank
-    @OneToMany
+    @ManyToMany
     private List<Spell> spells = new ArrayList<>();
 
     @NotBlank
