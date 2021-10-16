@@ -46,7 +46,7 @@ public class Wizard {
     private Background background;
 
     @NotBlank
-    @Size(max = 1000)
+    @Size(max = 800)
     private String history;
 
     private int level = 1;
