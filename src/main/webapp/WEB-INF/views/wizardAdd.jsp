@@ -69,72 +69,78 @@
                     <h3>Spells</h3>
                     <p class="post__intro">
                         <c:forEach items="${spells}" var="spell">
-                            <br/>
-                            -----------------------------------
-                            <br/>
-                            <b>${spell.name}<b/><br/>
-                            ${spell.description}
-                        </c:forEach>
+                        <br/>
+                        -----------------------------------
+                        <br/>
+                        <b>${spell.name}<b/><br/>
+                                ${spell.description}
+                            </c:forEach>
                     </p>
                 </div>
             </div>
-                <div class="col-sm-6">
-                     <div class="modal-dialog modal-sm">
-                        <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="text-center">Player registration</h4>
+            <div class="col-sm-6">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="text-center">Player registration</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form:form method="post" modelAttribute="wizard">
+                            <form:hidden path="id"/>
+                            <p class="text-center">
+                                Name:<br/>
+                                <form:input path="name" type="text" placeholder="Your name"/>
+                                <form:errors path="name"/> <br/>
+                            </p>
+                            <p class="text-center">
+                                Race:<br/>
+                                <form:select path="race.id" items="${races}" itemValue="id" itemLabel="name"/>
+                                <form:errors path="race"/> <br/>
+                            </p>
+                            <p class="text-center">
+                                Age:<br/>
+                                <form:input path="age" type="number" placeholder="Your age"/>
+                                <form:errors path="age"/><br/>
+                            </p>
+                            <p class="text-center">
+                                Gender:<br/>
+                                Female: <form:radiobutton path="gender" value="male"/>
+                                Male: <form:radiobutton path="gender" value="female"/>
+                                <br/>
+                            </p>
+                            <p class="text-center">
+                                Background:<br/>
+                                <form:select path="background.id" items="${backgrounds}" itemValue="id"
+                                             itemLabel="name"/>
+                                <form:errors path="background"/> <br/>
+                            </p>
+                            <p class="text-center">
+                                History:<br/>
+                                <form:textarea path="history" rows="8" cols="26"/>
+                                <form:errors path="history"/> <br/>
+                            </p>
+                            <p class="text-center">
+                                University:<br/>
+                                <form:select path="university.id" items="${universities}" itemValue="id"
+                                             itemLabel="name"/>
+                                <form:errors path="university"/> <br/>
+                            </p>
+                            <p class="text-center">
+                                Spells:<br/>
+                                <form:select path="spellBook" items="${spells}" itemValue="id" itemLabel="name"/>
+                                <br/>
+                                <form:errors path="spellBook"/> <br/>
+                            </p>
+                            <p class="text-center">
+                                <button type="submit">Create</button>
+                                <br/>
+                                <a href="/app/userPanel"><i>Back to user panel</i></a>
+                            </p>
+                        </div>
+                        </form:form>
                     </div>
-                    <div class="modal-body">
-                        <form:form method="post" modelAttribute="wizard">
-                        <form:hidden path="id"/>
-                        <p class="text-center">
-                            Name:<br/>
-                            <form:input path="name" type="text" placeholder="Your name"/>
-                            <form:errors path="name"/> <br/>
-                        </p>
-                        <p class="text-center">
-                            Race:<br/>
-                            <form:select path="race.id" items="${races}" itemValue="id" itemLabel="name"/>
-                            <form:errors path="race"/> <br/>
-                        </p>
-                        <p class="text-center">
-                            Age:<br/>
-                            <form:input path="age" type="number" placeholder="Your age"/>
-                            <form:errors path="age"/><br/>
-                        </p>
-                        <p class="text-center">
-                            Gender:<br/>
-                            Female: <form:radiobutton path="gender" value="male"/>
-                            Male: <form:radiobutton path="gender" value="female"/>
-                            <br/>
-                        </p>
-                        <p class="text-center">
-                            Background:<br/>
-                            <form:select path="background.id" items="${backgrounds}" itemValue="id" itemLabel="name"/>
-                            <form:errors path="background"/> <br/>
-                        </p>
-                        <p class="text-center">
-                            History:<br/>
-                            <form:textarea path="history" rows="8" cols="26"/>
-                            <form:errors path="history"/> <br/>
-                        </p>
-                        <p class="text-center">
-                            University:<br/>
-                            <form:select path="university.id" items="${universities}" itemValue="id" itemLabel="name"/>
-                            <form:errors path="university"/> <br/>
-                        </p>
-                        <p class="text-center">
-                            Spells:<br/>
-                            <form:select path="spellBook" items="${spells}" itemValue="id" itemLabel="name"/> <br/>
-                            <form:errors path="spellBook"/> <br/>
-                        </p>
-                        <p class="text-center">
-                            <button type="submit">Create</button><br/>
-                            <a href="/app/userPanel"><i>Back to user panel</i></a>
-                        </p>
-                    </div>
-                    </form:form>
                 </div>
+            </div>
         </div>
     </div>
 </section>
