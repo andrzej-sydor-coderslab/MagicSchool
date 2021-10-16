@@ -11,7 +11,6 @@
 </head>
 
 <body class="home">
-<!-- navbar-->
 <header class="header">
     <%@include file="/WEB-INF/fragments/headerLog.jsp" %>
 </header>

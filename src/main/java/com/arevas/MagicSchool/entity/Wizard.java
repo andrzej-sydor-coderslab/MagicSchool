@@ -56,8 +56,8 @@ public class Wizard {
     @ManyToOne
     private University university;
 
-    @ManyToMany
-    private List<Spell> spellBook = new ArrayList<>();
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Spell> spellBook = new ArrayList<Spell>();
 
     private int numberOfSpells = 3;
 

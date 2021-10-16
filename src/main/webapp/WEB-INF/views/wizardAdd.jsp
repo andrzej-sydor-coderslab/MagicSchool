@@ -8,7 +8,7 @@
 <head>
     <%@include file="/WEB-INF/fragments/head.jsp" %>
 </head>
-
+    <%@include file="/WEB-INF/fragments/headerLog.jsp" %>
 <body class="home">
 <header class="header">
 </header>

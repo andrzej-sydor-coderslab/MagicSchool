@@ -20,7 +20,7 @@
                     <c:choose>
                         <c:when test="${user.getLogin()==null}"><a class="nav-link color-header" href="/login">Sign in</a></c:when>
                         <c:otherwise>
-                            <a class="nav-link color-header">Witaj ${user.getLogin()}</a>
+                            <a class="nav-link color-header">Welcome ${user.getLogin()}</a>
                         </c:otherwise>
                     </c:choose>
                 </li>

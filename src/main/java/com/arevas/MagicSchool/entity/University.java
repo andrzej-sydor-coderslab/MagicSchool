@@ -13,6 +13,7 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 @Table(name = "universities")
 public class University {
 
@@ -38,4 +39,8 @@ public class University {
 
     @NotBlank
     private long pointsInRaking;
+
+    public String toStringUniversity() {
+        return name;
+    }
 }

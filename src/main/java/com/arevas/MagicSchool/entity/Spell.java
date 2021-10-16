@@ -11,6 +11,7 @@ import javax.validation.constraints.Size;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 @Table(name = "spells")
 public class Spell {
 
@@ -33,4 +34,8 @@ public class Spell {
 
     @NotBlank
     private int wizardLevelRequired;
+
+    public String toStringSpell() {
+        return name;
+    }
 }
