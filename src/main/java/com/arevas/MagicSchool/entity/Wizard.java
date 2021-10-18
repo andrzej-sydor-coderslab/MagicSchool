@@ -27,7 +27,7 @@ public class Wizard {
     @Size(min = 2, max = 10)
     private String name;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Race race;
 
     @NotBlank
@@ -42,7 +42,7 @@ public class Wizard {
 
     private int defencePoints = 10;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Background background;
 
     @NotBlank
@@ -53,7 +53,7 @@ public class Wizard {
 
     private int experience = 0;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private University university;
 
     @ManyToMany(fetch = FetchType.EAGER)

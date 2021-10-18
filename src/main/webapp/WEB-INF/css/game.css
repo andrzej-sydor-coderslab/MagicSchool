@@ -1,0 +1,79 @@
+.choice-container {
+    display: flex;
+    margin-bottom: 8px;
+    width: 100%;
+    font-size: 25px;
+    border: 2px solid rgb(86, 165, 235);
+    background-color: white;
+}
+
+.choice-container:hover {
+    cursor: pointer;
+    box-shadow: 0 6px 22px 0 rgba(86, 185, 235, 0.5);
+    transform: translateY(-0.1rem);
+    transition: transform 150ms;
+}
+
+.choice-prefix {
+    padding: 10px 10px;
+    background-color: #AAAAAA;
+    color: black;
+}
+
+.choice-text {
+    padding: 10px;
+    width: 100%;
+}
+
+.correct {
+    background-color: forestgreen;
+}
+
+.incorrect {
+    background-color: indianred;
+}
+
+#header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-prefix {
+    text-align: center;
+    font-size: 25px;
+}
+
+.header-main-text {
+    text-align: center;
+}
+
+#progressBar {
+    width: 320px;
+    height: 50px;
+    border: 5px solid #AAAAAA;
+    margin-top: 25px;
+}
+
+#progressBarFull {
+    height: 45px;
+    background-color: #AAAAAA;
+    width: 0%;
+}
+
+#loader {
+    border: 25px solid white;
+    border-radius: 50%;
+    border-top: 25px solid #AAAAAA;
+    width: 200px;
+    height: 200px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

@@ -1,7 +1,9 @@
 package com.arevas.MagicSchool.controller;
 
 import com.arevas.MagicSchool.dao.UserDao;
+import com.arevas.MagicSchool.dao.WizardDao;
 import com.arevas.MagicSchool.entity.User;
+import com.arevas.MagicSchool.entity.Wizard;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,9 +17,11 @@ import javax.validation.Valid;
 public class MainController {
 
     private final UserDao userDao;
+    private final WizardDao wizardDao;
 
-    public MainController(UserDao userDao) {
+    public MainController(UserDao userDao, WizardDao wizardDao) {
         this.userDao = userDao;
+        this.wizardDao = wizardDao;
     }
 
     @GetMapping("/index")
@@ -129,4 +133,44 @@ public class MainController {
         return "redirect:/app/userPanel";
     }
 
+    @GetMapping("/app/game")
+    public String startGame(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("logUser");
+        model.addAttribute("user", user);
+        model.addAttribute("wizard", user.getWizard());
+        if (user.getWizard() == null) {
+            return "views/wizardAdd";
+        }
+        return "views/game";
+    }
+
+    @GetMapping("/app/game/positiveEnd")
+    public String positiveFinishGame(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("logUser");
+        model.addAttribute("user", user);
+        model.addAttribute("wizard", user.getWizard());
+        return "views/positiveEndGame";
+    }
+
+    @PostMapping("/app/game/positiveEnd")
+    public String addPoints(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("logUser");
+        Wizard wizard = user.getWizard();
+        int currentPoints = wizard.getExperience();
+        wizard.setExperience(currentPoints + 5);
+        wizardDao.merge(wizard);
+        return "redirect:/app/wizardPanel";
+    }
+
+    @GetMapping("/app/game/negativeEnd")
+    public String negativeFinishGame(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("logUser");
+        model.addAttribute("user", user);
+        model.addAttribute("wizard", user.getWizard());
+        return "views/negativeEndGame";
+    }
 }
