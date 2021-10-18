@@ -104,6 +104,6 @@
 <footer class="footer">
     <%@include file="/WEB-INF/fragments/footer.jsp" %>
 </footer>
-<%@include file="/WEB-INF/fragments/script.jsp" %>
+    <%@include file="/WEB-INF/fragments/script.jsp" %>
 </body>
 </html>

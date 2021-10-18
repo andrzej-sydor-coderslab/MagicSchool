@@ -10,7 +10,6 @@
 </head>
 
 <body class="home">
-<!-- navbar-->
 <header class="header">
     <%@include file="/WEB-INF/fragments/headerNoLog.jsp" %>
 </header>
@@ -61,7 +60,6 @@
 <footer class="footer">
     <%@include file="/WEB-INF/fragments/footer.jsp" %>
 </footer>
-<!-- Scripts -->
-<%@include file="/WEB-INF/fragments/script.jsp" %>
+    <%@include file="/WEB-INF/fragments/script.jsp" %>
 </body>
 </html>

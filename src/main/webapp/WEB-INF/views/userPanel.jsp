@@ -2,7 +2,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -74,7 +73,6 @@
 <footer class="footer">
     <%@include file="/WEB-INF/fragments/footer.jsp" %>
 </footer>
-<!-- Scripts -->
-<%@include file="/WEB-INF/fragments/script.jsp" %>
+    <%@include file="/WEB-INF/fragments/script.jsp" %>
 </body>
 </html>
