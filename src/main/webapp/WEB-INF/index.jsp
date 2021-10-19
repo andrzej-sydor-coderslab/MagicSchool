@@ -10,7 +10,12 @@
 
 <body class="home">
 <header class="header">
-    <%@include file="/WEB-INF/fragments/headerNoLog.jsp" %>
+    <c:choose>
+        <c:when test="${user.getLogin()==null}"><%@include file="/WEB-INF/fragments/headerNoLog.jsp" %></c:when>
+        <c:otherwise>
+            <%@include file="/WEB-INF/fragments/headerLog.jsp" %>
+        </c:otherwise>
+    </c:choose>
 </header>
 <div id="carousel-home" data-ride="carousel" class="carousel slide carousel-fullscreen carousel-fade">
     <div role="listbox" class="carousel-inner">
@@ -27,7 +32,7 @@
     <div class="container">
         <h1>Develop your knowledge and magic today. Join one of four universities!</h1>
         <p class="lead">There are four schools of magic in our land - fire, water, air and earth. Young magicians in the university community stand hand in hand to learn, develop, learn new spells and take their school to the top!</p>
-        <p> <a href="/universityRanking" class="btn btn-ghost">Explore the universities</a></p>
+        <p> <a href="/rankings" class="btn btn-ghost">Explore the universities</a></p>
     </div>
 </section>
 <section class="section--padding-bottom-small">

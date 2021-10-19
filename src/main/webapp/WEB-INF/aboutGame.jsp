@@ -10,7 +10,12 @@
 
 <body class="home">
 <header class="header">
-    <%@include file="/WEB-INF/fragments/headerNoLog.jsp" %>
+    <c:choose>
+        <c:when test="${user.getLogin()==null}"><%@include file="/WEB-INF/fragments/headerNoLog.jsp" %></c:when>
+        <c:otherwise>
+            <%@include file="/WEB-INF/fragments/headerLog.jsp" %>
+        </c:otherwise>
+    </c:choose>
 </header>
 
 <div id="carousel-home" data-ride="carousel" class="carousel slide carousel-fullscreen carousel-fade">
@@ -42,7 +47,7 @@
                 <div class="post">
                     <div class="image"><a href="text.html"><img src="../img/fightAboutGame.jpg" alt="" class="img-responsive"></a></div>
                     <h3><a href="text.html">See how the players are doing today!</a></h3>
-                    <p class="read-more"><a href="/wizardRanking" class="btn btn-ghost">Wizard ranking</a></p>
+                    <p class="read-more"><a href="/rankings" class="btn btn-ghost">Wizard ranking</a></p>
                 </div>
             </div>
             <div class="col-sm-6">
@@ -58,6 +63,6 @@
 <footer class="footer">
     <%@include file="/WEB-INF/fragments/footer.jsp" %>
 </footer>
-<%@include file="/WEB-INF/fragments/script.jsp" %>
+    <%@include file="/WEB-INF/fragments/script.jsp" %>
 </body>
 </html>

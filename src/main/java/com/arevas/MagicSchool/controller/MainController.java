@@ -1,7 +1,11 @@
 package com.arevas.MagicSchool.controller;
 
+import com.arevas.MagicSchool.dao.SpellDao;
+import com.arevas.MagicSchool.dao.UniversityDao;
 import com.arevas.MagicSchool.dao.UserDao;
 import com.arevas.MagicSchool.dao.WizardDao;
+import com.arevas.MagicSchool.entity.Spell;
+import com.arevas.MagicSchool.entity.University;
 import com.arevas.MagicSchool.entity.User;
 import com.arevas.MagicSchool.entity.Wizard;
 import org.springframework.stereotype.Controller;
@@ -18,25 +22,48 @@ public class MainController {
 
     private final UserDao userDao;
     private final WizardDao wizardDao;
+    private final UniversityDao universityDao;
+    private final SpellDao spellDao;
 
-    public MainController(UserDao userDao, WizardDao wizardDao) {
+    public MainController(UserDao userDao, WizardDao wizardDao, UniversityDao universityDao, SpellDao spellDao) {
         this.userDao = userDao;
         this.wizardDao = wizardDao;
+        this.universityDao = universityDao;
+        this.spellDao = spellDao;
     }
 
     @GetMapping("/index")
-    public String mainPage() {
+    public String mainPage(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("logUser");
+        model.addAttribute("user", user);
         return "/index";
     }
 
     @GetMapping("/aboutGame")
-    public String aboutGame() {
+    public String aboutGame(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("logUser");
+        model.addAttribute("user", user);
         return "/aboutGame";
     }
 
     @GetMapping("/contact")
-    public String contact() {
+    public String contact(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("logUser");
+        model.addAttribute("user", user);
         return "/contact";
+    }
+
+    @GetMapping("/rankings")
+    public String rankings(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("logUser");
+        model.addAttribute("user", user);
+        model.addAttribute("wizards", wizardDao.topTenWizards(10));
+        model.addAttribute("universities", universityDao.findAllUniversities());
+        return "/rankings";
     }
 
     @GetMapping("/login")
@@ -172,5 +199,63 @@ public class MainController {
         model.addAttribute("user", user);
         model.addAttribute("wizard", user.getWizard());
         return "views/negativeEndGame";
+    }
+
+    @GetMapping("/app/university")
+    public String viewUniversity(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("logUser");
+        Wizard wizard = user.getWizard();
+        University university = wizard.getUniversity();
+        Long id = university.getId();
+        model.addAttribute("user", user);
+        model.addAttribute("wizard", wizard);
+        model.addAttribute("university", universityDao.findById(id));
+        return "views/university";
+    }
+
+    @GetMapping("/app/university/chat")
+    public String chat(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("logUser");
+        Wizard wizard = user.getWizard();
+        University university = wizard.getUniversity();
+        Long id = university.getId();
+        model.addAttribute("user", user);
+        model.addAttribute("wizard", wizard);
+        model.addAttribute("university", universityDao.findById(id));
+        return "views/universityChat";
+    }
+
+    @GetMapping("/app/spell/create")
+    public String createSpell(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("logUser");
+        Wizard wizard = user.getWizard();
+        University university = wizard.getUniversity();
+        Long id = university.getId();
+        model.addAttribute("user", user);
+        model.addAttribute("spell", new Spell());
+        model.addAttribute("university", universityDao.findById(id));
+        if (wizard.getLevel() > wizard.getNumberOfSpells()) {
+            return "views/createSpell";
+        } else {
+            return "views/impossibleCreateSpell";
+        }
+    }
+
+    @PostMapping("/app/spell/create")
+    public String register(Spell spell, BindingResult result, HttpServletRequest request ){
+        if (result.hasErrors()) {
+            return "views/createSpell";
+        }
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("logUser");
+        Wizard wizard = user.getWizard();
+        University university = wizard.getUniversity();
+        spell.setUniversity(university);
+        spell.setWizardLevelRequired(wizard.getLevel());
+        spellDao.persist(spell);
+        return "redirect:/app/university";
     }
 }

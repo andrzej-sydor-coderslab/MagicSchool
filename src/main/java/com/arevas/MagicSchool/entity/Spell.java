@@ -28,11 +28,9 @@ public class Spell {
     @Size(max = 1000)
     private String description;
 
-    @NotBlank
     @ManyToOne
     private University university;
 
-    @NotBlank
     private int wizardLevelRequired;
 
     public String toStringSpell() {

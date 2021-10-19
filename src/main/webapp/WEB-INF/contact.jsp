@@ -10,7 +10,12 @@
 
 <body class="home">
 <header class="header">
-    <%@include file="/WEB-INF/fragments/headerNoLog.jsp" %>
+    <c:choose>
+        <c:when test="${user.getLogin()==null}"><%@include file="/WEB-INF/fragments/headerNoLog.jsp" %></c:when>
+        <c:otherwise>
+            <%@include file="/WEB-INF/fragments/headerLog.jsp" %>
+        </c:otherwise>
+    </c:choose>
 </header>
 
 <div id="carousel-home" data-ride="carousel" class="carousel slide carousel-fullscreen carousel-fade">
@@ -42,6 +47,7 @@
         - <a href="https://pl.freepik.com/upklyak">Freepik user - Upklyak</a><br/>
         - <a href="https://pl.freepik.com/ddraw">Freepik user - Ddraw</a><br/>
         - <a href="https://pl.freepik.com/liuzishan">Freepik user - Liuzishan</a><br/>
+        - <a href="https://pl.freepik.com/macrovector">Freepik user - Macrovector</a><br/>
         </p>
     </div>
 </section>

@@ -1,6 +1,7 @@
 package com.arevas.MagicSchool.repository;
 
 import com.arevas.MagicSchool.entity.University;
+import com.arevas.MagicSchool.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

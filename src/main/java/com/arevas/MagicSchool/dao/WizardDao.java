@@ -39,8 +39,8 @@ public class WizardDao {
         entityManager.remove(entityManager.contains(wizard) ? wizard : entityManager.merge(wizard));
     }
 
-    public List<Wizard> findAll() {
-        Query query = entityManager.createQuery("SELECT allWizards FROM Wizard allWizards");
-        return query.getResultList();
+    public List<Wizard> topTenWizards(int limit) {
+        Query query = entityManager.createQuery("SELECT wizard FROM Wizard wizard ORDER BY wizard.experience DESC");
+        return query.setMaxResults(limit).getResultList();
     }
 }

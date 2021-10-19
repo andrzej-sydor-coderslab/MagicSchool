@@ -1,6 +1,7 @@
 package com.arevas.MagicSchool.dao;
 
 import com.arevas.MagicSchool.entity.University;
+import com.arevas.MagicSchool.entity.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +18,11 @@ public class UniversityDao {
     private EntityManager entityManager;
 
     public List<University> findAllUniversities() {
-        Query query = entityManager.createQuery("SELECT university from University university");
+        Query query = entityManager.createQuery("SELECT university from University university ORDER BY university.pointsInRaking DESC");
         return query.getResultList();
+    }
+
+    public University findById(long id) {
+        return entityManager.find(University.class, id);
     }
 }
