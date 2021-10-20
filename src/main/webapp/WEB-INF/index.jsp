@@ -30,9 +30,10 @@
 </div>
 <section class="background-gray-lightest negative-margin">
     <div class="container">
-        <h1>Develop your knowledge and magic today. Join one of four universities!</h1>
-        <p class="lead">There are four schools of magic in our land - fire, water, air and earth. Young magicians in the university community stand hand in hand to learn, develop, learn new spells and take their school to the top!</p>
-        <p> <a href="/rankings" class="btn btn-ghost">Explore the universities</a></p>
+        <h1>Develop your knowledge and magic today!</h1>
+        <p class="lead">There are four schools of magic in our land - fire, water, air and earth. Young magicians in the university community stand hand in hand to learn, develop, learn new spells and take their school to the top!</p> <br/>
+        <p class="lead">See how other wizards are doing!</p>
+        <p> <a href="/rankings" class="btn btn-ghost">Show rankings</a></p>
     </div>
 </section>
 <section class="section--padding-bottom-small">

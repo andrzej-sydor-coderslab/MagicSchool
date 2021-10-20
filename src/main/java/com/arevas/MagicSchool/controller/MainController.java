@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.*;
 
 @Controller
 public class MainController {
@@ -186,9 +187,17 @@ public class MainController {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("logUser");
         Wizard wizard = user.getWizard();
-        int currentPoints = wizard.getExperience();
-        wizard.setExperience(currentPoints + 5);
+        int currentPointsWizard = wizard.getExperience();
+        wizard.setExperience(currentPointsWizard + 5);
+        University university = wizard.getUniversity();
+        Long id = university.getId();
+        University finalUniversity = universityDao.findById(id);
+        long currentPointsUniversity = university.getPointsInRaking();
+        finalUniversity.setPointsInRaking(currentPointsUniversity + 5);
+        int lvl = wizard.lvlUp(wizard.getExperience(), wizard.getLevel());
+        wizard.setLevel(lvl);
         wizardDao.merge(wizard);
+        universityDao.merge(finalUniversity);
         return "redirect:/app/wizardPanel";
     }
 
@@ -245,7 +254,7 @@ public class MainController {
     }
 
     @PostMapping("/app/spell/create")
-    public String register(Spell spell, BindingResult result, HttpServletRequest request ){
+    public String finishCreateSpell(Spell spell, BindingResult result, HttpServletRequest request ){
         if (result.hasErrors()) {
             return "views/createSpell";
         }
@@ -255,7 +264,39 @@ public class MainController {
         University university = wizard.getUniversity();
         spell.setUniversity(university);
         spell.setWizardLevelRequired(wizard.getLevel());
+        int currentNumberOfSpells = wizard.getNumberOfSpells();
+        wizard.setNumberOfSpells(currentNumberOfSpells + 1);
         spellDao.persist(spell);
+        wizardDao.merge(wizard);
+        return "redirect:/app/university";
+    }
+
+    @GetMapping("/app/spell/learn")
+    public String learnNewSpell(HttpServletRequest request ){
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("logUser");
+        Wizard wizard = user.getWizard();
+        if (wizard.getLevel() < 4) {
+            return "views/noLearnSpell";
+        }
+        if (wizard.getLevel() == wizard.getNumberOfSpells()) {
+            return "views/noLearnSpell";
+        }
+        if (wizard.getLevel() > wizard.getNumberOfSpells()) {
+            Set<Spell> actualSpellList = wizard.getSpellBook();
+            Random random = new Random();
+            List<Spell> allSpells = spellDao.findAllSpells();
+            int newSpellId = random.nextInt(allSpells.size());
+            Spell spell = allSpells.get(newSpellId);
+            Set<Spell> newSpellList = new LinkedHashSet<>(actualSpellList);
+            newSpellList.add(spell);
+            while (actualSpellList.size() > newSpellList.size()) {
+                newSpellList.add(spell);
+            }
+            wizard.setSpellBook(newSpellList);
+            wizard.setNumberOfSpells(wizard.getLevel());
+            wizardDao.merge(wizard);
+        }
         return "redirect:/app/university";
     }
 }

@@ -5,9 +5,9 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Setter
@@ -22,7 +22,7 @@ public class Wizard {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotEmpty
     @Column(nullable = false, unique = true)
     @Size(min = 2, max = 10)
     private String name;
@@ -30,7 +30,7 @@ public class Wizard {
     @ManyToOne(fetch = FetchType.EAGER)
     private Race race;
 
-    @NotBlank
+    @NotEmpty
     private String gender;
 
     @Min(1)
@@ -45,7 +45,7 @@ public class Wizard {
     @ManyToOne(fetch = FetchType.EAGER)
     private Background background;
 
-    @NotBlank
+    @NotEmpty
     @Size(max = 800)
     private String history;
 
@@ -57,8 +57,18 @@ public class Wizard {
     private University university;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Spell> spellBook = new ArrayList<Spell>();
+    private Set<Spell> spellBook = new LinkedHashSet<Spell>();
 
     private int numberOfSpells = 3;
+
+    public int lvlUp(int experience, int currentLvl) {
+
+        for (int i = 50; i < (experience + 1); i = i + 50) {
+            if (i == experience) {
+                currentLvl++;
+            }
+        }
+        return currentLvl;
+    }
 
 }

@@ -14,18 +14,8 @@ import java.util.List;
 @Transactional
 public class WizardDao {
 
-    private final WizardRepository wizardRepository;
-
     @PersistenceContext
     private EntityManager entityManager;
-
-    public WizardDao(WizardRepository wizardRepository) {
-        this.wizardRepository = wizardRepository;
-    }
-
-    public Wizard findById(long id) {
-        return entityManager.find(Wizard.class, id);
-    }
 
     public void persist(Wizard wizard){
         entityManager.persist(wizard);
@@ -35,12 +25,9 @@ public class WizardDao {
         return entityManager.merge(wizard);
     }
 
-    public void remove(Wizard wizard) {
-        entityManager.remove(entityManager.contains(wizard) ? wizard : entityManager.merge(wizard));
-    }
-
     public List<Wizard> topTenWizards(int limit) {
         Query query = entityManager.createQuery("SELECT wizard FROM Wizard wizard ORDER BY wizard.experience DESC");
         return query.setMaxResults(limit).getResultList();
     }
+
 }

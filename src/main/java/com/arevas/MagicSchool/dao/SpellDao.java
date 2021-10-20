@@ -1,6 +1,7 @@
 package com.arevas.MagicSchool.dao;
 
 import com.arevas.MagicSchool.entity.Spell;
+import com.arevas.MagicSchool.entity.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +25,10 @@ public class SpellDao {
     public List<Spell> findAllSpellsWhereWizardLvlIsOne() {
         Query query = entityManager.createQuery("SELECT spell FROM Spell spell WHERE spell.wizardLevelRequired = 1");
         return query.getResultList();
+    }
+
+    public Spell findById(long id) {
+        return entityManager.find(Spell.class, id);
     }
 
     public void persist(Spell spell){

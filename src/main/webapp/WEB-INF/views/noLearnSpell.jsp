@@ -28,7 +28,7 @@
 </div>
 <section class="background-gray-lightest negative-margin">
     <div class="container">
-        <h2>Your level is insufficient to create a new spell. Gain experience by participating in the game.</h2>
+        <h2>Your level does not allow you to learn a new spell. Gain experience by participating in the game.</h2>
         <br/>
         <br/>
         <button class="btn btn-ghost"><a href="/app/university">Back to university</a></button>

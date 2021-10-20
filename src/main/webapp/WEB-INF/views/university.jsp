@@ -33,28 +33,28 @@
                 <div class="post">
                     <c:choose>
                         <c:when  test="${university.id==1}">
-                            <h2>Welcome to ${university.toStringUniversity()}.</h2> <br/>
+                            <h2>Welcome to ${university.toString()}.</h2> <br/>
                             <br/>
                             <h4>${university.description}</h4> <br/>
                             <br/>
                             <h4>We currently ${university.pointsInRaking} have points in the ranking.</h4>
                         </c:when>
                         <c:when test="${university.id==2}">
-                            <h2>Welcome to ${university.toStringUniversity()}.</h2> <br/>
+                            <h2>Welcome to ${university.toString()}.</h2> <br/>
                             <br/>
                             <h4>${university.description}</h4> <br/>
                             <br/>
                             <h4>We currently ${university.pointsInRaking} have points in the ranking.</h4>
                         </c:when>
                         <c:when test="${university.id==3}">
-                            <h2>Welcome to ${university.toStringUniversity()}.</h2> <br/>
+                            <h2>Welcome to ${university.toString()}.</h2> <br/>
                             <br/>
                             <h4>${university.description}</h4> <br/>
                             <br/>
                             <h4>We currently ${university.pointsInRaking} have points in the ranking.</h4>
                         </c:when>
                         <c:otherwise>
-                            <h2>Welcome to ${university.toStringUniversity()}.</h2> <br/>
+                            <h2>Welcome to ${university.toString()}.</h2> <br/>
                             <br/>
                             <h4>${university.description}</h4> <br/>
                             <br/>
@@ -69,8 +69,12 @@
                     <p> <a href="/app/university/chat" class="btn btn-ghost">Join the university chat</a></p>
                     <br/>
                     <br/>
-                    <h2>Creating a spell</h2> <br/>
+                    <h2>Creating spell</h2> <br/>
                     <p> <a href="/app/spell/create" class="btn btn-ghost">Create spell</a></p>
+                    <br/>
+                    <br/>
+                    <h2>Learn new spell</h2> <br/>
+                    <p> <a href="/app/spell/learn" class="btn btn-ghost">Learn spell</a></p>
                 </div>
             </div>
         </div>

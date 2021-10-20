@@ -38,7 +38,7 @@
                     <h2>Wizard ranking - top 10</h2>
                     <c:forEach items="${wizards}" var="wizard">
                     <div style="text-align: center;">
-                        <h3>${wizard.name} ---------- ${wizard.experience} points <br/></h3>
+                        <h3>${wizard.name} (${wizard.university}) ---------- ${wizard.experience} points <br/></h3>
                     </div>
                     </c:forEach>
                 </div>
@@ -48,7 +48,7 @@
                     <h2>Universities ranking</h2> <br/>
                     <c:forEach items="${universities}" var="university">
                         <div style="text-align: center;">
-                            <h3>${university.toStringUniversity()} ---------- ${university.pointsInRaking} points <br/></h3>
+                            <h3>${university.toString()} ---------- ${university.pointsInRaking} points <br/></h3>
                         </div>
                     </c:forEach>
                 </div>

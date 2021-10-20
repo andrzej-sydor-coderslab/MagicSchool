@@ -52,7 +52,7 @@
                     <td>${wizard.gender}</td>
                     <td>${wizard.age}</td>
                     <td>${wizard.background.toStringBackground()}</td>
-                    <td>${wizard.university.toStringUniversity()}</td>
+                    <td>${wizard.university.toString()}</td>
                     <td>${wizard.numberOfSpells}</td>
                 </tr>
                 </tbody>

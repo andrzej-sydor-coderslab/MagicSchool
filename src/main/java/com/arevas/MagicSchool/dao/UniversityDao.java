@@ -2,6 +2,7 @@ package com.arevas.MagicSchool.dao;
 
 import com.arevas.MagicSchool.entity.University;
 import com.arevas.MagicSchool.entity.User;
+import com.arevas.MagicSchool.entity.Wizard;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,5 +25,9 @@ public class UniversityDao {
 
     public University findById(long id) {
         return entityManager.find(University.class, id);
+    }
+
+    public University merge(University university) {
+        return entityManager.merge(university);
     }
 }

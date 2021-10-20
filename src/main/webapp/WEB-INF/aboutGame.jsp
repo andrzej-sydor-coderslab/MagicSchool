@@ -35,7 +35,8 @@
         <p class="lead">1. By creating an account you have the option of creating your own wizard who will be your avatar in the game.</p>
         <p class="lead">2. Your wizard can be personalized by you by choosing, among others race, gender, origin, university, and spells you already know.</p>
         <p class="lead">3. By joining a university you get the opportunity to participate in mini-games to increase your school's reputation and also to increase your magic level.</p>
-        <p class="lead">4. By increasing your level you gain the opportunity to learn more spells, you will also climb the ranking of the best wizards in the land!</p>
+        <p class="lead">4. By increasing your level you gain the opportunity to learn more spells, you will also climb the ranking of the best wizards in the land!
+                        For every fifty experience points you will level up. From the fourth level, you learn a new random spell, and you can also create new spells.</p>
         <p class="lead">5. At universities, you and your friends can form brotherhoods and communicate with each other.</p>
         <p> <a href="/login" class="btn btn-ghost">Log in and join us today!</a></p>
     </div>
