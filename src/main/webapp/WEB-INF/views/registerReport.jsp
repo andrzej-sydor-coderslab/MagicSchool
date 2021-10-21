@@ -11,11 +11,11 @@
 
 <body class="home">
 <header class="header">
-    <%@include file="/WEB-INF/fragments/headerLog.jsp" %>
+    <%@include file="/WEB-INF/fragments/headerReport.jsp" %>
 </header>
 <div id="carousel-home" data-ride="carousel" class="carousel slide carousel-fullscreen carousel-fade">
     <div role="listbox" class="carousel-inner">
-        <div class="item active" style="background-image: url('../../img/userPanel.jpg');">
+        <div class="item active" style="background-image: url('../img/portal2Login.jpg');">
             <div class="overlay"></div>
             <div class="carousel-caption">
                 <h1 class="super-heading">Magic School</h1>
@@ -24,45 +24,40 @@
         </div>
     </div>
 </div>
+<h2 class="text-center">The given login or email has already been used. Please enter other details.</h2>
 <div class="modal-dialog modal-sm">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 class="modal-title text-center">Player edit form</h4>
+            <h4 class="modal-title">Player registration</h4>
         </div>
         <div class="modal-body">
             <form:form method="post" modelAttribute="user">
-                    <form:hidden path="id"/>
                 <div class="form-group">
+                    <form:hidden path="id"/>
                     <p class="text-center">
                         Login:<br/>
-                        <form:input path="login" type="text" placeholder="Your new login"/><br/>
-                        <form:errors path="login"/>
+                        <form:input path="login" type="text" placeholder="Your login"/>
                     </p>
                 </div>
                 <div class="form-group">
                     <p class="text-center">
                         Email:<br/>
-                        <form:input path="email" type="email" placeholder="Your new email"/><br/>
-                        <form:errors path="email"/>
+                        <form:input path="email" type="email" placeholder="Your email"/>
                     </p>
                 </div>
                 <div class="form-group">
-                <p class="text-center">
-                    Password:<br/>
-                    <form:input path="password" type="password" placeholder="Your new password"/><br/>
-                    <form:errors path="password"/>
-                </p>
+                    <p class="text-center">
+                        Password:<br/>
+                        <form:input path="password" type="password" placeholder="Your password"/>
+                    </p>
                 </div>
                 <p class="text-center">
-                    <button type="submit">Edit</button>
+                    <button type="submit" class="btn btn-ghost">Register</button>
                 </p>
             </form:form>
         </div>
     </div>
 </div>
-<br/>
-<br/>
-<br/>
 <footer class="footer">
     <%@include file="/WEB-INF/fragments/footer.jsp" %>
 </footer>

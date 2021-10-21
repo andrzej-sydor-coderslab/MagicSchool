@@ -4,18 +4,17 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <%@include file="/WEB-INF/fragments/head.jsp" %>
 </head>
 
 <body class="home">
 <header class="header">
-    <%@include file="/WEB-INF/fragments/headerLog.jsp" %>
+    <%@include file="/WEB-INF/fragments/headerReport.jsp" %>
 </header>
 <div id="carousel-home" data-ride="carousel" class="carousel slide carousel-fullscreen carousel-fade">
     <div role="listbox" class="carousel-inner">
-        <div class="item active" style="background-image: url('../../img/userPanel.jpg');">
+        <div class="item active" style="background-image: url('../img/portal2Login.jpg');">
             <div class="overlay"></div>
             <div class="carousel-caption">
                 <h1 class="super-heading">Magic School</h1>
@@ -24,48 +23,39 @@
         </div>
     </div>
 </div>
+<h2 class="text-center">Invalid data entered. Please try again.</h2>
 <div class="modal-dialog modal-sm">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 class="modal-title text-center">Player edit form</h4>
+            <h4 id="Login" class="modal-title">Player login</h4>
         </div>
         <div class="modal-body">
             <form:form method="post" modelAttribute="user">
+                <div class="form-group">
                     <form:hidden path="id"/>
-                <div class="form-group">
-                    <p class="text-center">
-                        Login:<br/>
-                        <form:input path="login" type="text" placeholder="Your new login"/><br/>
-                        <form:errors path="login"/>
-                    </p>
-                </div>
-                <div class="form-group">
                     <p class="text-center">
                         Email:<br/>
-                        <form:input path="email" type="email" placeholder="Your new email"/><br/>
-                        <form:errors path="email"/>
+                        <form:input path="email" name="email" type="email" placeholder="email"/>
                     </p>
                 </div>
                 <div class="form-group">
-                <p class="text-center">
-                    Password:<br/>
-                    <form:input path="password" type="password" placeholder="Your new password"/><br/>
-                    <form:errors path="password"/>
-                </p>
+                    <p class="text-center">
+                        Password:<br/>
+                        <form:input path="password" name="password" type="password" placeholder="password"/>
+                    </p>
                 </div>
                 <p class="text-center">
-                    <button type="submit">Edit</button>
+                    <button type="submit">Sign in</button>
                 </p>
             </form:form>
         </div>
+        <p class="text-center text-muted">Not registered yet?</p>
+        <p class="text-center text-muted"><a href="/register"><strong>Register now</strong></a>! It is easy and done in 1 minute!</p>
     </div>
 </div>
-<br/>
-<br/>
-<br/>
 <footer class="footer">
     <%@include file="/WEB-INF/fragments/footer.jsp" %>
 </footer>
-    <%@include file="/WEB-INF/fragments/script.jsp" %>
+<%@include file="/WEB-INF/fragments/script.jsp" %>
 </body>
 </html>

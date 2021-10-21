@@ -57,9 +57,6 @@ public class WizardController {
 
     @GetMapping("/app/addWizard")
     public String add(Model model, HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("logUser");
-        model.addAttribute("user", user);
         model.addAttribute("wizard", new Wizard());
         return "views/wizardAdd";
     }
@@ -74,6 +71,10 @@ public class WizardController {
         wizardDao.persist(wizard);
         user.setWizard(wizard);
         userDao.merge(user);
+        Background background = wizard.getBackground();
+        Race race = wizard.getRace();
+        University university = wizard.getUniversity();
+        System.out.println(background + " " + race + " " + university);
         return "redirect:/app/wizardPanel";
     }
 
@@ -83,6 +84,7 @@ public class WizardController {
         User user = (User) session.getAttribute("logUser");
         model.addAttribute("user", user);
         model.addAttribute("wizard", user.getWizard());
+        model.addAttribute("spell", spellDao.finallAllSpellsByWizardCreate(user.getWizard()));
         return "views/wizardPanel";
     }
 }

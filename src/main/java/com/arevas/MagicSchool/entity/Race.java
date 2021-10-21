@@ -21,7 +21,7 @@ public class Race {
     @NotEmpty
     private String name;
 
-    public String toStringRace() {
+    public String toString() {
         return name;
     }
 }

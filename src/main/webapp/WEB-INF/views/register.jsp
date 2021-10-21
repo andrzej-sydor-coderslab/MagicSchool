@@ -27,7 +27,7 @@
 <div class="modal-dialog modal-sm">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 id="Login" class="modal-title">Player registration</h4>
+            <h4 class="modal-title">Player registration</h4>
         </div>
         <div class="modal-body">
             <form:form method="post" modelAttribute="user">
@@ -51,7 +51,7 @@
                     </p>
                 </div>
                 <p class="text-center">
-                    <button type="submit">Register</button>
+                    <button type="submit" class="btn btn-ghost">Register</button>
                 </p>
             </form:form>
         </div>

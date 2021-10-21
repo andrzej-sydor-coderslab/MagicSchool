@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
@@ -23,7 +24,7 @@ public class User {
 
     @NotBlank
     @Column(nullable = false, unique = true)
-    @Size(min = 2, max = 10)
+    @Size(min = 2, max = 10, message = "Login must be at least two and a maximum of ten characters long.")
     private String login;
 
     @NotBlank
@@ -31,8 +32,8 @@ public class User {
     @Email
     private String email;
 
-    @NotBlank
-    @Size(min = 7)
+    @NotEmpty
+    @Size(min = 7, message = "Password must be at least seven characters long.")
     private String password;
 
     private boolean goodMode;

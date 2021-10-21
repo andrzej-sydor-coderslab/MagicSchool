@@ -94,7 +94,7 @@
                             </p>
                             <p class="text-center">
                                 Race:<br/>
-                                <form:select path="race.id" items="${races}" itemValue="id" itemLabel="name"/>
+                                <form:select path="race" items="${races}" itemValue="id" itemLabel="name"/>
                                 <form:errors path="race"/> <br/>
                             </p>
                             <p class="text-center">
@@ -104,13 +104,13 @@
                             </p>
                             <p class="text-center">
                                 Gender:<br/>
-                                Female: <form:radiobutton path="gender" value="male"/>
-                                Male: <form:radiobutton path="gender" value="female"/>
+                                Female: <form:radiobutton path="gender" value="female"/>
+                                Male: <form:radiobutton path="gender" value="male"/>
                                 <br/>
                             </p>
                             <p class="text-center">
                                 Background:<br/>
-                                <form:select path="background.id" items="${backgrounds}" itemValue="id"
+                                <form:select path="background" items="${backgrounds}" itemValue="id"
                                              itemLabel="name"/>
                                 <form:errors path="background"/> <br/>
                             </p>
@@ -121,7 +121,7 @@
                             </p>
                             <p class="text-center">
                                 University:<br/>
-                                <form:select path="university.id" items="${universities}" itemValue="id"
+                                <form:select path="university" items="${universities}" itemValue="id"
                                              itemLabel="name"/>
                                 <form:errors path="university"/> <br/>
                             </p>

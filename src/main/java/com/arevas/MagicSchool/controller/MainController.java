@@ -8,6 +8,7 @@ import com.arevas.MagicSchool.entity.Spell;
 import com.arevas.MagicSchool.entity.University;
 import com.arevas.MagicSchool.entity.User;
 import com.arevas.MagicSchool.entity.Wizard;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -74,13 +75,13 @@ public class MainController {
     }
 
     @PostMapping("/login")
-    public String login(User user, HttpServletRequest request){
+    public String login(User user, HttpServletRequest request) {
         String email = user.getEmail();
         String password = user.getPassword();
         User logUser= userDao.login(email, password);
         HttpSession session = request.getSession();
         if(logUser == null){
-            return "views/login";
+            return "views/loginReport";
         } else {
             session.setAttribute("logUser", logUser);
             return "redirect:/app/userPanel";
@@ -93,16 +94,20 @@ public class MainController {
         return "views/register";
     }
     @PostMapping("/register")
-    public String register(User user, BindingResult result, HttpServletRequest request ){
+    public String register(@Valid User user, BindingResult result, HttpServletRequest request ){
+        HttpSession session = request.getSession();
         if (result.hasErrors()) {
             return "views/register";
+        }
+        User check = userDao.register(user.getEmail());
+        if (check == null) {
+            return "views/registerReport";
         }
         String email = user.getEmail();
         String password = user.getPassword();
         user.setPassword(UserDao.hashPassword(password));
         userDao.persist(user);
         User logUser= userDao.login(email, password);
-        HttpSession session = request.getSession();
         session.setAttribute("logUser", logUser);
         return "views/userPanel";
     }
@@ -124,20 +129,18 @@ public class MainController {
 
     @GetMapping("/app/userPanel/merge")
     public String merge(@RequestParam int idToMerge, Model model) {
-        model.addAttribute("user", userDao.findById(idToMerge));
+        User editUser = userDao.findById(idToMerge);
+        editUser.setPassword("");
+        model.addAttribute("user", editUser);
         return "views/userEdit";
     }
 
     @PostMapping("/app/userPanel/merge")
-    public String userMerge(@Valid User user, BindingResult result, HttpServletRequest request ) {
-        String email = user.getEmail();
-        String password = user.getPassword();
-        User logUser= userDao.login(email, password);
-        HttpSession session = request.getSession();
+    public String userMerge(@Valid User user, BindingResult result) {
         if (result.hasErrors()) {
             return "views/userEdit";
         }
-        session.setAttribute("logUser", logUser);
+        String password = user.getPassword();
         user.setPassword(UserDao.hashPassword(password));
         userDao.merge(user);
         return "redirect:/app/userPanel";
@@ -264,8 +267,10 @@ public class MainController {
         University university = wizard.getUniversity();
         spell.setUniversity(university);
         spell.setWizardLevelRequired(wizard.getLevel());
+        spell.setWizardWhoCreatedSpell(wizard);
         int currentNumberOfSpells = wizard.getNumberOfSpells();
-        wizard.setNumberOfSpells(currentNumberOfSpells + 1);
+        currentNumberOfSpells++;
+        wizard.setNumberOfSpells(currentNumberOfSpells);
         spellDao.persist(spell);
         wizardDao.merge(wizard);
         return "redirect:/app/university";
@@ -285,15 +290,18 @@ public class MainController {
         if (wizard.getLevel() > wizard.getNumberOfSpells()) {
             Set<Spell> actualSpellList = wizard.getSpellBook();
             Random random = new Random();
-            List<Spell> allSpells = spellDao.findAllSpells();
-            int newSpellId = random.nextInt(allSpells.size());
-            Spell spell = allSpells.get(newSpellId);
-            Set<Spell> newSpellList = new LinkedHashSet<>(actualSpellList);
-            newSpellList.add(spell);
-            while (actualSpellList.size() > newSpellList.size()) {
-                newSpellList.add(spell);
+            List<Spell> allPossibleSpellsToLearn = spellDao.findAllSpellsByWizardLvl(wizard.getLevel());
+            for (int i = 1; i <= allPossibleSpellsToLearn.size(); i++) {
+                int newSpellId = random.nextInt(allPossibleSpellsToLearn.size());
+                Spell spell = allPossibleSpellsToLearn.get(newSpellId);
+                if (actualSpellList.contains(spell)) {
+                    continue;
+                } else {
+                    actualSpellList.add(spell);
+                    break;
+                }
             }
-            wizard.setSpellBook(newSpellList);
+            wizard.setSpellBook(actualSpellList);
             wizard.setNumberOfSpells(wizard.getLevel());
             wizardDao.merge(wizard);
         }

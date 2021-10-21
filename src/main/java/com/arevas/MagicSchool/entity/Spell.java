@@ -34,6 +34,10 @@ public class Spell {
 
     private int wizardLevelRequired;
 
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "wizard_id", unique = true)
+    private Wizard wizardWhoCreatedSpell;
+
     public String toStringSpell() {
         return name;
     }

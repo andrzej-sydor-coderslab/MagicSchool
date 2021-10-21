@@ -23,7 +23,13 @@
             <div class="overlay"></div>
             <div class="carousel-caption">
                 <h1 class="super-heading">Magic School</h1>
-                <p class="super-paragraph">Hello, young adept of magic. You just found your place on earth. <a href="/login">Join us today</a>!</p>
+                <p class="super-paragraph">Hello, young adept of magic. You just found your place on earth.
+                    <c:choose>
+                        <c:when test="${user.getLogin()==null}"><a href="/login">Join us today</a>!</p></c:when>
+                        <c:otherwise>
+                            </p>
+                        </c:otherwise>
+                    </c:choose>
             </div>
         </div>
     </div>
@@ -32,7 +38,7 @@
     <div class="container">
         <h1>Develop your knowledge and magic today!</h1>
         <p class="lead">There are four schools of magic in our land - fire, water, air and earth. Young magicians in the university community stand hand in hand to learn, develop, learn new spells and take their school to the top!</p> <br/>
-        <p class="lead">See how other wizards are doing!</p>
+        <p class="lead">See how other wizards are doing! Who knows, maybe you will find yourself among the best.</p>
         <p> <a href="/rankings" class="btn btn-ghost">Show rankings</a></p>
     </div>
 </section>
@@ -41,17 +47,17 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="post">
-                    <div class="image"><a href="text.html"><img src="../img/deer.jpg" alt="" class="img-responsive"></a></div>
-                    <h3><a href="text.html">Discover the real world of magic</a></h3>
-                    <p class="post__intro">The world of magic is an extraordinary world. It is the same with knowledge and science - they are also amazing! Grow today!.</p>
-                    <p class="read-more"><a href="/aboutGame" class="btn btn-ghost">About game</a></p>
+                    <div class="image"><img src="../img/deer.jpg" alt="" class="img-responsive"></a></div>
+                    <h3>Discover the real world of magic</h3>
+                    <p>The world of magic is an extraordinary world. It is the same with knowledge and science - they are also amazing! Grow today!.</p><br/>
+                    <p><a href="/aboutGame" class="btn btn-ghost">About game</a></p>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="post">
-                    <div class="image"><a href="text.html"><img src="../img/fireContact.jpg" alt="" class="img-responsive"></a></div>
-                    <h3><a href="text.html">Behind the scenes of the game</a></h3>
-                    <p class="post__intro">Meet the author, versions and the backstage of working on the project.</p>
+                    <div class="image"><img src="../img/fireContact.jpg" alt="" class="img-responsive"></a></div>
+                    <h3>Behind the scenes of the game</h3>
+                    <p>Meet the author, version, and behind the scenes of working on the project. The current version of the project is 1.0.</p><br/>
                     <p class="read-more"><a href="/contact" class="btn btn-ghost">Contact</a></p>
                 </div>
             </div>

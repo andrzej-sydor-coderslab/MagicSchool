@@ -19,7 +19,7 @@
             <div class="overlay"></div>
             <div class="carousel-caption">
                 <h1 class="super-heading">Magic School</h1>
-                <p class="super-paragraph">Time to start the game!</p>
+                <p class="super-paragraph"></p>
             </div>
         </div>
     </div>

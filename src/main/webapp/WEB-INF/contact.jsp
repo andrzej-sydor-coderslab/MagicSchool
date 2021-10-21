@@ -48,6 +48,8 @@
         - <a href="https://pl.freepik.com/ddraw">Freepik user - Ddraw</a><br/>
         - <a href="https://pl.freepik.com/liuzishan">Freepik user - Liuzishan</a><br/>
         - <a href="https://pl.freepik.com/macrovector">Freepik user - Macrovector</a><br/>
+        <br/>
+        The current version of the application - 1.0 from 23/10/2021.
         </p>
     </div>
 </section>

@@ -41,7 +41,7 @@
                 <div class="form-group">
                     <p class="text-center">
                         Description:<br/>
-                        <form:input path="description" type="text" placeholder="Spell description"/>
+                        <form:textarea path="description" rows="8" cols="26" placeholder="Spell description"/>
                     </p>
                 </div>
                 <p class="text-center">

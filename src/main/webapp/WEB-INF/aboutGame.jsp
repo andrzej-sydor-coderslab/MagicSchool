@@ -24,7 +24,13 @@
             <div class="overlay"></div>
             <div class="carousel-caption">
                 <h1 class="super-heading">Magic School</h1>
-                <p class="super-paragraph">Hello, young adept of magic. You just found your place on earth. <a href="/login">Join us today</a>!</p>
+                <p class="super-paragraph">Hello, young adept of magic. You just found your place on earth.
+                    <c:choose>
+                        <c:when test="${user.getLogin()==null}"><a href="/login">Join us today</a>!</p></c:when>
+                         <c:otherwise>
+                             </p>
+                         </c:otherwise>
+                    </c:choose>
             </div>
         </div>
     </div>
@@ -46,15 +52,15 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="post">
-                    <div class="image"><a href="text.html"><img src="../img/fightAboutGame.jpg" alt="" class="img-responsive"></a></div>
-                    <h3><a href="text.html">See how the players are doing today!</a></h3>
+                    <div class="image"><img src="../img/fightAboutGame.jpg" alt="" class="img-responsive"></a></div>
+                    <h3>See how the players are doing today!</h3>
                     <p class="read-more"><a href="/rankings" class="btn btn-ghost">Wizard ranking</a></p>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="post">
-                    <div class="image"><a href="text.html"><img src="../img/fireContact.jpg" alt="" class="img-responsive"></a></div>
-                    <h3><a href="text.html">Behind the scenes of the game</a></h3>
+                    <div class="image"><img src="../img/fireContact.jpg" alt="" class="img-responsive"></a></div>
+                    <h3>Behind the scenes of the game</h3>
                     <p class="read-more"><a href="/contact" class="btn btn-ghost">Contact</a></p>
                 </div>
             </div>

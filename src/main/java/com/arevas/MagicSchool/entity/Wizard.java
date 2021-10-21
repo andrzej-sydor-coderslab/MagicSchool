@@ -24,7 +24,7 @@ public class Wizard {
 
     @NotEmpty
     @Column(nullable = false, unique = true)
-    @Size(min = 2, max = 10)
+    @Size(min = 2, max = 10, message = "Name must be at least two and a maximum of ten characters long.")
     private String name;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -33,7 +33,7 @@ public class Wizard {
     @NotEmpty
     private String gender;
 
-    @Min(1)
+    @Min(value = 10, message = "Character must be at least 10 years old.")
     private int age;
 
     private int lifePoints = 10;
@@ -46,7 +46,7 @@ public class Wizard {
     private Background background;
 
     @NotEmpty
-    @Size(max = 800)
+    @Size(max = 800, message = "The history cannot be longer than eight hundred characters.")
     private String history;
 
     private int level = 1;

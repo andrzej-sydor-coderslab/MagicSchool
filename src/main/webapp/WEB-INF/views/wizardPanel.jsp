@@ -48,10 +48,10 @@
                     <td>${wizard.name}</td>
                     <td>${wizard.level}</td>
                     <td>${wizard.experience}</td>
-                    <td>${wizard.race.toStringRace()}</td>
+                    <td>${wizard.race.toString()}</td>
                     <td>${wizard.gender}</td>
                     <td>${wizard.age}</td>
-                    <td>${wizard.background.toStringBackground()}</td>
+                    <td>${wizard.background.toString()}</td>
                     <td>${wizard.university.toString()}</td>
                     <td>${wizard.numberOfSpells}</td>
                 </tr>
@@ -61,6 +61,31 @@
             <br/>
         </form:form>
         <br/>
+        <h2 class="text-center">Hint!</h2>
+        <p class="text-center"><b>If the number of spells is lower than your level, you can create or learn a new spell.</b></p>
+        <p class="text-center"><b>Remember that creating a spell is not the same as learning it. This process continues. You need to be patient before you can fine-tune and master your own spell.</b></p>
+        <br/>
+        <h2 class="text-center">Spells you are currently creating</h2>
+            <table class="Table">
+                <thead>
+                <tr>
+                    <th width="15%">Name</th>
+                    <th width="70%">Description</th>
+                    <th width="15%">Required level</th>
+                </tr>
+                </thead>
+                <c:forEach items="${spell}" var="spell">
+                <tbody>
+                <tr>
+                    <td>${spell.name}</td>
+                    <td>${spell.description}</td>
+                    <td>${spell.wizardLevelRequired}</td>
+                </tr>
+                </tbody>
+                </c:forEach>
+            </table>
+            <br/>
+            <br/>
         <img src="../img/wizardWizardPanel.jpg">
         <br/>
         <br/>

@@ -23,7 +23,7 @@ public class Background {
     @Size(max = 1000)
     private String description;
 
-    public String toStringBackground() {
+    public String toString() {
         return name;
     }
 }

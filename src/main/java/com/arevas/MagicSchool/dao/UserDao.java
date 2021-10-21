@@ -43,9 +43,21 @@ public class UserDao {
 
     public User login(String email,String password){
         User logUser = userRepository.findByEmail(email);
-        if(logUser.getEmail().equals(email)&&BCrypt.checkpw(password, logUser.getPassword())) {
+        if (logUser == null) {
+            return null;
+        }
+        if (logUser.getEmail().equals(email)&&BCrypt.checkpw(password, logUser.getPassword())) {
             return logUser;
         }
         return null;
+    }
+
+    public User register(String email) {
+        User log = userRepository.findByEmail(email);
+        if (log != null) {
+            return null;
+        } else {
+            return log;
+        }
     }
 }

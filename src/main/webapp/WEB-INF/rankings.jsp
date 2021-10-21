@@ -35,26 +35,63 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="post">
-                    <h2>Wizard ranking - top 10</h2>
-                    <c:forEach items="${wizards}" var="wizard">
                     <div style="text-align: center;">
-                        <h3>${wizard.name} (${wizard.university}) ---------- ${wizard.experience} points <br/></h3>
+                        <h2>Wizards ranking - top 10</h2>
+                        <div style="text-align: center;">
+                            <center>
+                                <table class="Table">
+                                    <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Level</th>
+                                        <th>Experience</th>
+                                        <th>University</th>
+                                    </tr>
+                                    </thead>
+                                    <c:forEach items="${wizards}" var="wizard">
+                                        <tbody>
+                                        <tr>
+                                            <td><h3>${wizard.name}</h3></td>
+                                            <td><h3>${wizard.level}</h3></td>
+                                            <td><h3>${wizard.experience}</h3></td>
+                                            <td><h3>${wizard.university}</h3></td>
+                                        </tr>
+                                        </tbody>
+                                    </c:forEach>
+                                </table>
+                            </center>
+                        </div>
                     </div>
-                    </c:forEach>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="post">
-                    <h2>Universities ranking</h2> <br/>
-                    <c:forEach items="${universities}" var="university">
-                        <div style="text-align: center;">
-                            <h3>${university.toString()} ---------- ${university.pointsInRaking} points <br/></h3>
-                        </div>
-                    </c:forEach>
+                    <div style="text-align: center;">
+                        <h2>Universities ranking</h2>
+                        <center>
+                            <table class="Table">
+                                <thead>
+                                <tr>
+                                    <th width="80%">Name</th>
+                                    <th width="20%">Points</th>
+                                </tr>
+                                </thead>
+                                <c:forEach items="${universities}" var="university">
+                                    <tbody>
+                                    <tr>
+                                        <td><h3>${university.name}</h3></td>
+                                        <td><h3>${university.pointsInRaking}</h3></td>
+                                    </tr>
+                                    </tbody>
+                                </c:forEach>
+                            </table>
+                        </center>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </section>
 <footer class="footer">
     <%@include file="/WEB-INF/fragments/footer.jsp" %>

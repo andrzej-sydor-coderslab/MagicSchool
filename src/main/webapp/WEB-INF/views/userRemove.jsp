@@ -33,8 +33,8 @@
                 <h3>Are you sure you want to delete the user - ${user.login}?</h3>
                 <form method="post">
                     <input type="hidden" name="idToRemove" value="${user.id}">
-                    <button type="submit" value="yes" name="confirmed">YES</button>
-                    <button type="submit" value="no" name="confirmed">NO</button>
+                    <button type="submit" class="btn-ghost" value="yes" name="confirmed">YES</button>
+                    <button type="submit" class="btn-ghost" value="no" name="confirmed">NO</button>
                 </form>
             </form>
     </div>

@@ -75,6 +75,10 @@
                     <br/>
                     <h2>Learn new spell</h2> <br/>
                     <p> <a href="/app/spell/learn" class="btn btn-ghost">Learn spell</a></p>
+                    <br/>
+                    <br/>
+                    <h2>Rankings</h2> <br/>
+                    <p> <a href="/rankings" class="btn btn-ghost">Rankings</a></p>
                 </div>
             </div>
         </div>
