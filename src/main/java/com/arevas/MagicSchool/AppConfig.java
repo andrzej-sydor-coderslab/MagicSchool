@@ -16,14 +16,14 @@ import java.util.Locale;
 
 @Configuration
 @ComponentScan(basePackages = "com.arevas.MagicSchool")
-@EnableJpaRepositories(basePackages = "com.arevas.MagicSchool.repository")
+@EnableJpaRepositories(basePackages = "com.arevas.MagicSchool")
 @EnableTransactionManagement
 public class AppConfig {
 
     @Bean(name="localeResolver")
     public LocaleContextResolver getLocaleContextResolver() {
         SessionLocaleResolver localeResolver = new SessionLocaleResolver();
-        localeResolver.setDefaultLocale(new Locale("pl","PL"));
+        localeResolver.setDefaultLocale(new Locale("en","EN"));
         return localeResolver;
     }
 

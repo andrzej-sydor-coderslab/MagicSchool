@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Table(name = "users")
 public class User {
 
@@ -61,5 +60,10 @@ public class User {
     public String showWizardName() {
         String nameWizard = this.wizard.getName();
         return nameWizard;
+    }
+
+    @Override
+    public String toString() {
+        return login;
     }
 }

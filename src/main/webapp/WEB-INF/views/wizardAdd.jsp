@@ -31,7 +31,7 @@
                 <div class="post">
                     <div class="image"><img src="../img/backgroundAdd.jpg" alt="" class="img-responsive"></div>
                     <h3>Backgrounds</h3>
-                    <p class="post__intro">
+                    <p>
                         <c:forEach items="${backgrounds}" var="background">
                             <br/>
                             -----------------------------------
@@ -46,7 +46,7 @@
                 <div class="post">
                     <div class="image"><img src="../img/universityAdd.jpg" alt="" class="img-responsive"></div>
                     <h3>Universities</h3>
-                    <p class="post__intro">
+                    <p>
                         <c:forEach items="${universities}" var="university">
                             <br/>
                             -----------------------------------
@@ -67,7 +67,8 @@
                 <div class="post">
                     <div class="image"><img src="../img/spellAdd.jpg" alt="" class="img-responsive"></div>
                     <h3>Spells</h3>
-                    <p class="post__intro">
+                    <h4>In the first level, you can choose up to three spells!</h4><br/>
+                    <p>
                         <c:forEach items="${spells}" var="spell">
                         <br/>
                         -----------------------------------

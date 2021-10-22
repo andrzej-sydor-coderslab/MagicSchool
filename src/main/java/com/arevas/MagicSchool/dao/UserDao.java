@@ -7,11 +7,14 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 @Transactional
 public class UserDao {
+
     private final UserRepository userRepository;
 
     @PersistenceContext
@@ -52,12 +55,4 @@ public class UserDao {
         return null;
     }
 
-    public User register(String email) {
-        User log = userRepository.findByEmail(email);
-        if (log != null) {
-            return null;
-        } else {
-            return log;
-        }
-    }
 }

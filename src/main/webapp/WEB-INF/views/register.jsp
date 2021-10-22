@@ -35,7 +35,7 @@
                     <form:hidden path="id"/>
                     <p class="text-center">
                         Login:<br/>
-                        <form:input path="login" type="text" placeholder="Your login"/>
+                        <form:input path="login" type="text" placeholder="Min 2 chars, max 7 chars"/>
                     </p>
                 </div>
                 <div class="form-group">
@@ -47,7 +47,7 @@
                 <div class="form-group">
                     <p class="text-center">
                         Password:<br/>
-                        <form:input path="password" type="password" placeholder="Your password"/>
+                        <form:input path="password" type="password" placeholder="Min 7 chars"/>
                     </p>
                 </div>
                 <p class="text-center">

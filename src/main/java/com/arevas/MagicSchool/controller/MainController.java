@@ -4,11 +4,9 @@ import com.arevas.MagicSchool.dao.SpellDao;
 import com.arevas.MagicSchool.dao.UniversityDao;
 import com.arevas.MagicSchool.dao.UserDao;
 import com.arevas.MagicSchool.dao.WizardDao;
-import com.arevas.MagicSchool.entity.Spell;
 import com.arevas.MagicSchool.entity.University;
 import com.arevas.MagicSchool.entity.User;
 import com.arevas.MagicSchool.entity.Wizard;
-import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.*;
+
 
 @Controller
 public class MainController {
@@ -25,13 +23,11 @@ public class MainController {
     private final UserDao userDao;
     private final WizardDao wizardDao;
     private final UniversityDao universityDao;
-    private final SpellDao spellDao;
 
-    public MainController(UserDao userDao, WizardDao wizardDao, UniversityDao universityDao, SpellDao spellDao) {
+    public MainController(UserDao userDao, WizardDao wizardDao, UniversityDao universityDao) {
         this.userDao = userDao;
         this.wizardDao = wizardDao;
         this.universityDao = universityDao;
-        this.spellDao = spellDao;
     }
 
     @GetMapping("/index")
@@ -97,10 +93,6 @@ public class MainController {
     public String register(@Valid User user, BindingResult result, HttpServletRequest request ){
         HttpSession session = request.getSession();
         if (result.hasErrors()) {
-            return "views/register";
-        }
-        User check = userDao.register(user.getEmail());
-        if (check == null) {
             return "views/registerReport";
         }
         String email = user.getEmail();
@@ -157,7 +149,13 @@ public class MainController {
         HttpSession session = request.getSession();
         if ("yes".equals(confirmed)){
             User user = userDao.findById(idToRemove);
+            Wizard wizard = user.getWizard();
             userDao.remove(user);
+            University university = wizard.getUniversity();
+            university.setPointsInRaking(university.getPointsInRaking() - wizard.getExperience());
+            universityDao.merge(university);
+            wizardDao.remove(wizard);
+
             session.removeAttribute("logUser");
             return "redirect:/index";
         }
@@ -237,74 +235,5 @@ public class MainController {
         model.addAttribute("wizard", wizard);
         model.addAttribute("university", universityDao.findById(id));
         return "views/universityChat";
-    }
-
-    @GetMapping("/app/spell/create")
-    public String createSpell(Model model, HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("logUser");
-        Wizard wizard = user.getWizard();
-        University university = wizard.getUniversity();
-        Long id = university.getId();
-        model.addAttribute("user", user);
-        model.addAttribute("spell", new Spell());
-        model.addAttribute("university", universityDao.findById(id));
-        if (wizard.getLevel() > wizard.getNumberOfSpells()) {
-            return "views/createSpell";
-        } else {
-            return "views/impossibleCreateSpell";
-        }
-    }
-
-    @PostMapping("/app/spell/create")
-    public String finishCreateSpell(Spell spell, BindingResult result, HttpServletRequest request ){
-        if (result.hasErrors()) {
-            return "views/createSpell";
-        }
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("logUser");
-        Wizard wizard = user.getWizard();
-        University university = wizard.getUniversity();
-        spell.setUniversity(university);
-        spell.setWizardLevelRequired(wizard.getLevel());
-        spell.setWizardWhoCreatedSpell(wizard);
-        int currentNumberOfSpells = wizard.getNumberOfSpells();
-        currentNumberOfSpells++;
-        wizard.setNumberOfSpells(currentNumberOfSpells);
-        spellDao.persist(spell);
-        wizardDao.merge(wizard);
-        return "redirect:/app/university";
-    }
-
-    @GetMapping("/app/spell/learn")
-    public String learnNewSpell(HttpServletRequest request ){
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("logUser");
-        Wizard wizard = user.getWizard();
-        if (wizard.getLevel() < 4) {
-            return "views/noLearnSpell";
-        }
-        if (wizard.getLevel() == wizard.getNumberOfSpells()) {
-            return "views/noLearnSpell";
-        }
-        if (wizard.getLevel() > wizard.getNumberOfSpells()) {
-            Set<Spell> actualSpellList = wizard.getSpellBook();
-            Random random = new Random();
-            List<Spell> allPossibleSpellsToLearn = spellDao.findAllSpellsByWizardLvl(wizard.getLevel());
-            for (int i = 1; i <= allPossibleSpellsToLearn.size(); i++) {
-                int newSpellId = random.nextInt(allPossibleSpellsToLearn.size());
-                Spell spell = allPossibleSpellsToLearn.get(newSpellId);
-                if (actualSpellList.contains(spell)) {
-                    continue;
-                } else {
-                    actualSpellList.add(spell);
-                    break;
-                }
-            }
-            wizard.setSpellBook(actualSpellList);
-            wizard.setNumberOfSpells(wizard.getLevel());
-            wizardDao.merge(wizard);
-        }
-        return "redirect:/app/university";
     }
 }

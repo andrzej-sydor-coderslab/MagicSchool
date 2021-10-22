@@ -17,7 +17,7 @@ In this project I focused to using technologies that we used during course. Tech
 <li>CSS
 <li>MySQL
 </li>
-
+<br/>
 In my work, I also used:
 <li>IDEA Ultimate
 <li><a href="https://bootstrapious.com">Bootstrapious</a><br/>
@@ -30,10 +30,11 @@ In my work, I also used:
 
 ------------------------
 Development plans for the game in the near future:
+<li>own html and css template
 <li>add Spring Security
-<li>add Private message box
+<li>add private message box
 <li>add more game types, including a game based on controlling your avatar
 <li>development of the user panel and university panel
 </li>
-
+<br/>
 Thanks for getting to this place. If you have questions, suggestions, feel free to write. Regards!

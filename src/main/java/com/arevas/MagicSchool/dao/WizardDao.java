@@ -30,4 +30,7 @@ public class WizardDao {
         return query.setMaxResults(limit).getResultList();
     }
 
+    public void remove(Wizard wizard) {
+        entityManager.remove(entityManager.contains(wizard) ? wizard : entityManager.merge(wizard));
+    }
 }

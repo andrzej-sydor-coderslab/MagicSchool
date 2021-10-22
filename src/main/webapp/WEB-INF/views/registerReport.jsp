@@ -24,7 +24,10 @@
         </div>
     </div>
 </div>
-<h2 class="text-center">The given login or email has already been used. Please enter other details.</h2>
+<h2 class="text-center">Oops! Something went wrong. Please enter other details.<br/>
+                        1. The given login or e-mail address may already be used.<br/>
+                        2. Login must have a minimum of two characters and a maximum of seven characters.<br/>
+                        3. The password must be at least seven characters long.</h2>
 <div class="modal-dialog modal-sm">
     <div class="modal-content">
         <div class="modal-header">
