@@ -74,5 +74,6 @@
     <%@include file="/WEB-INF/fragments/footer.jsp" %>
 </footer>
     <%@include file="/WEB-INF/fragments/script.jsp" %>
+    <script type="text/javascript" src="../../game.js"></script>
 </body>
 </html>
